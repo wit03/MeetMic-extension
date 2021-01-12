@@ -1,7 +1,7 @@
 {
     "name": "MeetMic Extension",
     "version": "1.0",
-    "description": "Chrome (or Edge) extension to control your mic over web",
+    "description": "Chrome (or Edge) extension to control your google mic over web",
     "permissions": [
         "activeTab",
         "declarativeContent"
