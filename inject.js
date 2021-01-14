@@ -26,12 +26,16 @@ window.addEventListener("load", function () {
         .getElementById("connect-key")
         .addEventListener("click", myFunction);
       function myFunction() {
+        //One-time connection verified
+        db.collection("user").doc(getElementById("key-id").value).get().then((doc=> {
+          if(doc.exists) {
+            alert("MeetMic is connected")
+          }
+        }))
+        //Get DB snapshot
         db.collection("user")
           .doc(document.getElementById("key-id").value)
           .onSnapshot((doc) => {
-            if(doc.exists) {
-              alert("MeetMic is connected")
-            }
             if (!doc.data().check) {
               checkElement('[jscontroller="lCGUBd"]').then((selector) => {
                 setTimeout(function () {
