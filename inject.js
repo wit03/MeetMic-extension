@@ -27,16 +27,19 @@ window.addEventListener("load", function () {
         .addEventListener("click", myFunction);
       function myFunction() {
         //One-time connection verified
-        db.collection("user").doc(getElementById("key-id").value).get().then((doc=> {
-          if(doc.exists) {
-            alert("MeetMic is connected")
-          }
-        }))
+        db.collection("user")
+          .doc(document.getElementById("key-id").value)
+          .get()
+          .then((doc) => {
+            if (doc.exists) {
+              alert("MeetMic is connected");
+            }
+          });
         //Get DB snapshot
         db.collection("user")
           .doc(document.getElementById("key-id").value)
           .onSnapshot((doc) => {
-            if (!doc.data().check) {
+            if (doc.data().check) {
               checkElement('[jscontroller="lCGUBd"]').then((selector) => {
                 setTimeout(function () {
                   selector.click();
@@ -45,7 +48,7 @@ window.addEventListener("load", function () {
                     .setAttribute("data-is-muted", "true");
                 }, 1000);
               });
-            } else if (doc.data().check) {
+            } else if (!doc.data().check) {
               checkElement('[jscontroller="lCGUBd"]').then((selector) => {
                 setTimeout(function () {
                   selector.click();
